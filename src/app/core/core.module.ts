@@ -3,10 +3,11 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { GlobalErrorHandler } from './errors/global-error-handler';
 import { HttpLoadingInterceptor } from './errors/http-loading.interceptor';
+import { FormsModule } from '@angular/forms'//new
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   providers: [
     {
       provide: ErrorHandler,

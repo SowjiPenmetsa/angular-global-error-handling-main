@@ -6,6 +6,6 @@ export interface MailApiDTO{
    requestPayload:string|null;
    apiResponse:string|null;
    currentLoggedInUser:string;
-   
+   comments:string;
    browserName:string;
 }

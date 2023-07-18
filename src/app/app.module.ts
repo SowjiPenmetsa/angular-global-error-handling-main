@@ -7,6 +7,7 @@ import { CoreModule } from './core/core.module';
 import { MaterialModule } from './material.module';
 import { SharedModule } from './shared/shared.module'; 
 
+
 import axios from 'axios';
 
 @NgModule({
@@ -17,6 +18,7 @@ import axios from 'axios';
     MaterialModule,
     CoreModule,
     SharedModule, 
+    
   ],
   entryComponents: [AppComponent],
   declarations: [AppComponent],

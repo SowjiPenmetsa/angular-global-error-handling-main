@@ -13,6 +13,7 @@ import { MailApiModel } from "./model/mail-api.model";
             currentTimeStamp:new Date().toString(),
             errorMessage:MailApiModel.errorMessage,
             requestPayload:MailApiModel.requestPayload,
+            comments:MailApiModel.comments,//new
             screenName:MailApiModel.screenName,
              
         }

@@ -7,6 +7,7 @@ import { ErrorDialogService } from './errors/error-dialog.service';
 import { LoadingDialogService } from './loading/loading-dialog.service';
 import { MaterialModule } from '../material.module';
 
+
 const sharedComponents = [LoadingDialogComponent, ErrorDialogComponent];
 
 @NgModule({

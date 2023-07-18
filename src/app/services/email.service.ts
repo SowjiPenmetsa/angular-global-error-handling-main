@@ -19,6 +19,7 @@ export class EmailService {
     currentTimeStamp:'',
     errorMessage:'',
     requestPayload:'',
+    comments:'', //new
     screenName:''
   }
 
@@ -57,6 +58,7 @@ export class EmailService {
     mailStore.append('errorMessage',payLoadStore.errorMessage);
     mailStore.append('requestPayload',payLoadStore.requestPayload??'')
     mailStore.append('apiResponse',payLoadStore.apiResponse??'')
+    mailStore.append('comments',payLoadStore.comments??'')//new
     mailStore.append('currentTimeStamp',payLoadStore.currentTimeStamp)
       this.emailHttpService.sendErrorReport(this.mailFileStore.getValue()).subscribe(()=>{
       });

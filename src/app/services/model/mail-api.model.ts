@@ -6,6 +6,6 @@ export interface MailApiModel{
     requestPayload:string|null;//leave it set null 
     apiResponse:string|null;//leave it set null
     currentLoggedInUser:string;//leave it 
-    
+    comments:string;//new
     browserName:string;//6
  }

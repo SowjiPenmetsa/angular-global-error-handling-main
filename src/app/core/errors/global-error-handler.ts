@@ -6,6 +6,7 @@ import { MailApiModel } from 'src/app/services/model/mail-api.model';
 import { ScreenShotService } from 'src/app/shared/screen-shot/screen-shot.service';
 import { ErrorDialogService } from '../../shared/errors/error-dialog.service';
 
+
 @Injectable()
 export class GlobalErrorHandler implements ErrorHandler {
   constructor(
@@ -36,6 +37,7 @@ export class GlobalErrorHandler implements ErrorHandler {
 
   reportAnError(_error:HttpErrorResponse):void{
     this.screenShotService.takeScreenShot().subscribe((blob:any)=>{
+      
       const payload:MailApiModel={
         apiEndPoint: _error?.url,
         currentTimeStamp:new Date().toString(),
@@ -44,11 +46,9 @@ export class GlobalErrorHandler implements ErrorHandler {
         apiResponse:null,
         browserName:navigator.appVersion,
         errorMessage:_error?.message,
+        comments: "",//new
         screenName:this.titleService.getTitle(),
-    
   
-        
-   
        };
      const formData= new FormData();
      formData.append('file',blob);
