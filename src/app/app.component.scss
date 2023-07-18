@@ -1,0 +1,11 @@
+.content-container {
+    margin: 1rem;
+    display: table;
+    flex-direction: column;
+    transform: translateX(70%);
+    button {
+        margin-top: 1rem;
+        margin-left: 1.5rem;
+        text-align: right;
+    }
+}
