@@ -17,6 +17,8 @@ export class AppComponent {
   localError() {
     throw Error('The app component has thrown an error!');
   }
+ 
+
 
   failingRequest() {
    // this.http.get('https://httpstat.us/404?sleep=2000').toPromise();

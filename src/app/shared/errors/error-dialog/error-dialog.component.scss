@@ -1,6 +1,36 @@
 .error-message {
-  background: #eee;
-  padding: 1rem;
-  font-family: monospace;
-  word-break: break-all;
+    background: #eee;
+    padding: 2rem;
+    font-family: monospace;
+    word-break: break-all;
+}
+
+.example-full-width {
+    background-color: #eee;
+    padding: 1rem;
+    width: 93%;
+    height: 60px;
+}
+
+.mat-dialog-content {
+    height: 270px;
+}
+
+.dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.show-link {
+    color: cornflowerblue;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.copy {
+    color: cornflowerblue;
+    background-color: transparent;
+    border: 1px solid black;
 }

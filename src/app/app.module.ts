@@ -9,11 +9,13 @@ import { SharedModule } from './shared/shared.module';
 
 
 import axios from 'axios';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     HttpClientModule,
     MaterialModule,
     CoreModule,

@@ -1,18 +1,29 @@
-<h1 mat-dialog-title>An error has occurred!</h1>
+<h1 mat-dialog-title>
+    <strong>System Error
+    </strong>
+</h1>
 <div mat-dialog-content>
     <p *ngIf="data.status">
         <b>Status Code: {{ data.status }}</b>
     </p>
-    <p>Something went wrong!</p>
-    <p class="error-message">
-        {{ data?.message }}
-    </p>
-    <textarea matInput placeholder="Comments"></textarea>
-</div>
+    <p>The system could not perform the requested operation. Select the Submit Error button to send to the Helpdesk!</p>
+    <p *ngIf="showDetails"><b>Message: </b>{{ data?.message }}</p>
+    <p *ngIf="showDetails"><b>Date & Time: </b>{{ getCurrentDateTime() }}</p>
+    <p *ngIf="showDetails"><b>URL: </b>{{ getCurrentURL() }}</p>
+    <p *ngIf="showDetails"><b>Ucm Request Id: </b>{{ data.traceId || 'N/A'}}</p>
+    <!-- <p *ngIf="showDetails"><b>Location: </b>{{ data?.url }}</p>
+    <p *ngIf="showDetails"><b>Screen Name: </b>{{ getScreenName()}}</p> -->
 
 
-<div mat-dialog-actions>
-    <button mat-raised-button mat-dialog-close color="primary">Close</button>
-    <button mat-raised-button mat-dialog-close color="primary" (click)="reportAnIssue();">Report an issue</button>
-    <!---Click method reportAnError() make a call to email service -->
+    <button mat-button (click)="copyError()" class="copy">CopyError</button>
+    <br>
+    <button mat-button (click)="toggleDetails()" class="show-link">{{ showDetails ? '^ Show Less' : '^Show More' }}</button></div>
+<!-- <mat-form-field class="example-full-width"> -->
+<!-- <textarea matInput [(ngModel)]="comments" placeholder="Comments" (change)="onCommentChange()"></textarea> -->
+<!-- </mat-form-field> -->
+
+<div mat-dialog-actions class="dialog-actions">
+    <button mat-raised-button mat-dialog-close color="" style="color:cornflowerblue; background-color: transparent; border: 1px solid black;">Close</button>
+    <button mat-raised-button mat-dialog-close color="primary" (click)="reportAnIssue();" style="margin-left: 10px;">Submit Error</button>
+
 </div>

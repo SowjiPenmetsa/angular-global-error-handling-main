@@ -1,11 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { ErrorHandler, Injectable, NgZone } from '@angular/core';
+import { ErrorHandler, Injectable, NgZone} from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { EmailService } from 'src/app/services/email.service';
 import { MailApiModel } from 'src/app/services/model/mail-api.model';
 import { ScreenShotService } from 'src/app/shared/screen-shot/screen-shot.service';
 import { ErrorDialogService } from '../../shared/errors/error-dialog.service';
-
+import { Inject } from '@angular/core';
 
 @Injectable()
 export class GlobalErrorHandler implements ErrorHandler {
@@ -14,20 +14,33 @@ export class GlobalErrorHandler implements ErrorHandler {
     private zone: NgZone,
     private mailService:EmailService,
     private titleService:Title,
-    private screenShotService:ScreenShotService
+    private screenShotService:ScreenShotService,
+   
+    
+    
   ) {}
 
   handleError(error: any) {
     // Check if it's an error from an HTTP response
     if (!(error instanceof HttpErrorResponse)) {
-      error = error.rejection; // get the error object
-    }
-    this.zone.run(() =>
+      error = error.rejection || error?.message; // get the error object
+      this.zone.run(() =>
       this.errorDialogService.openDialog(
-        error?.message || 'Undefined client error',
+        error || 'client error occured',
+        error?.status,
+       
+      )
+    );
+    }else{
+
+      this.zone.run(() =>
+      this.errorDialogService.openDialog(
+        error?.message || 'client error occured',
         error?.status
       )
     );
+    }
+   
     
 
  /// call reportAnError
@@ -46,10 +59,12 @@ export class GlobalErrorHandler implements ErrorHandler {
         apiResponse:null,
         browserName:navigator.appVersion,
         errorMessage:_error?.message,
-        comments: "",//new
+        comments: "",
         screenName:this.titleService.getTitle(),
   
        };
+
+
      const formData= new FormData();
      formData.append('file',blob);
    
@@ -59,5 +74,8 @@ export class GlobalErrorHandler implements ErrorHandler {
     //create a mailapi dto object pass into the below method
     
   }
+
+   
 }
+
 

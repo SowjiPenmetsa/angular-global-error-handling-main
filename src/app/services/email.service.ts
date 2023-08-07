@@ -19,7 +19,7 @@ export class EmailService {
     currentTimeStamp:'',
     errorMessage:'',
     requestPayload:'',
-    comments:'', //new
+    comments:'', 
     screenName:''
   }
 
@@ -28,12 +28,20 @@ export class EmailService {
   private mailFileStore= new BehaviorSubject<FormData>(new FormData
     ());
   mailFileStore$=this.mailPayloadStore.asObservable();
+
+  private commentStore = new BehaviorSubject<string>(null||'');
+  commentStore$=this.commentStore.asObservable();
+
   constructor(private emailHttpService:EmailHttpService) { }
 
   makeSuccessCall():void{
     this.emailHttpService.makeSuccessCall().subscribe((res)=>{
 
     });
+  }
+
+  setCommentStore(comment:string):void{
+this.commentStore.next(comment);
   }
 
   makeErrorCall():void {
@@ -58,7 +66,7 @@ export class EmailService {
     mailStore.append('errorMessage',payLoadStore.errorMessage);
     mailStore.append('requestPayload',payLoadStore.requestPayload??'')
     mailStore.append('apiResponse',payLoadStore.apiResponse??'')
-    mailStore.append('comments',payLoadStore.comments??'')//new
+    mailStore.append('comments',this.commentStore.getValue())
     mailStore.append('currentTimeStamp',payLoadStore.currentTimeStamp)
       this.emailHttpService.sendErrorReport(this.mailFileStore.getValue()).subscribe(()=>{
       });
